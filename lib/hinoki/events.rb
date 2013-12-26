@@ -1,24 +1,20 @@
 # hinoki/events.rb
 
 class Hinoki
-  class Events
-
-    def initialize
-      @conn = Hinoki::Connection.new
-    end
+  module Events
 
     # Lists all events
-    def all
+    def self.all
       return @conn.get('/events')
     end
 
     # Returns events associated with the given client
-    def for_client(client)
+    def self.for_client(client)
       return @conn.get("/events/#{client}")
     end
 
     # Clears an event from Sensu
-    def resolve(client, check)
+    def self.resolve(client, check)
       return @conn.delete("/events/#{client}/#{check}")
     end
 

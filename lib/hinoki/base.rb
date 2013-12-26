@@ -12,11 +12,11 @@ class Hinoki
   
   def initialize
     @conn       = Hinoki::Connection.new
-    @aggregates = Hinoki::Aggregates.new
-    @checks     = Hinoki::Checks.new
-    @clients    = Hinoki::Clients.new
-    @events     = Hinoki::Events.new
-    @stashes    = Hinoki::Stashes.new
+    @aggregates = Hinoki::Aggregates
+    @checks     = Hinoki::Checks
+    @clients    = Hinoki::Clients
+    @events     = Hinoki::Events
+    @stashes    = Hinoki::Stashes
   end
 
   def self.conn
