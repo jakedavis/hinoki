@@ -1,5 +1,7 @@
 # Hinoki
-A programmatic interface to the Sensu API.
+A programmatic interface to the Sensu API. Named after the
+[Japanese tree](http://en.wikipedia.org/wiki/Chamaecyparis_obtusa) which were 
+(are?) once used for Japanese hand fans (Sensu).
 
 ## Usage
 This gem is designed to be easy to use and programmatic. It is basically just a
