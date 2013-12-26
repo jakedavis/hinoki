@@ -1,7 +1,11 @@
 # hinoki/events.rb
 
+require 'hinoki/connection'
+
 class Hinoki
   module Events
+
+    @conn = Hinoki::Connection.new
 
     # Lists all events
     def self.all

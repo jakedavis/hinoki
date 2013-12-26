@@ -1,7 +1,11 @@
 # hinoki/checks.rb
 
+require 'hinoki/connection'
+
 class Hinoki
   module Checks
+
+    @conn = Hinoki::Connection.new
 
     # Lists all checks
     def self.all
@@ -14,9 +18,10 @@ class Hinoki
     end
 
     # Request a check to be run
-    def self.request(check)
-      # TODO : Payload
-      return @conn.post("/checks")
+    def self.request(check, subscribers=[])
+      payload = JSON.generate({check: check, subscribers: subscribers})
+
+      return @conn.post("/checks", payload)
     end
 
   end

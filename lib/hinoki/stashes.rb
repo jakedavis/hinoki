@@ -1,20 +1,28 @@
 # hinoki/stashes.rb
 
 require 'json'
+require 'hinoki/connection'
 
 class Hinoki
   module Stashes
 
+    @conn = Hinoki::Connection.new
+
     # Lists all stashes
     def self.all(limit=nil, offset=nil)
-      # TODO : Limit, offset
-      return @conn.get('/stashes')
+      url = "/stashes"
+      if limit  then url.append("?limit=#{limit}") end
+      if offset then url.append("&offset=#{offset}") end
+      
+      return @conn.get(url)
     end
 
     # Add a new stash (JSON formatted)
-    def self.create(payload, expiration=nil)
-      # TODO : paylod, expiration
-      return @conn.post('/stashes')
+    def self.create(path, content, expiration=nil)
+      hash = {path: path, content: content}
+      if expiration then hash.merge!({expire: expiration}) end
+
+      return @conn.post('/stashes', JSON.generate(hash))
     end 
 
     # Get information about a specific stash

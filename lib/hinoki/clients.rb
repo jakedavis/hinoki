@@ -1,12 +1,19 @@
 # hinoki/client.rb
 
+require 'hinoki/connection'
+
 class Hinoki
   module Clients
+    
+    @conn = Hinoki::Connection.new
 
     # Retrieves list of all clients
     def self.all(limit=nil, offset=nil)
-      # TODO : limit, offset
-      return @conn.get('/clients')
+      url = "/clients"
+      if limit  then url.append("?limit=#{limit}") end
+      if offset then url.append("&offset=#{offset}") end
+
+      return @conn.get(url)
     end
 
     # Gets info about a specific client
