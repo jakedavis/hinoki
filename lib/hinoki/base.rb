@@ -19,14 +19,9 @@ class Hinoki
     @stashes    = Hinoki::Stashes
   end
 
-  def self.conn
-    return @conn
-  end
-
   # Delivers information about Sensu and RabbitMQ performance
   def health(consumers=1, messages=1)
-    # TODO : consumers, messages
-    return @conn.get('/health')
+    return @conn.get("/health?consumers=#{consumers}&messages=#{messages}")
   end
 
   # Metadata about the Sensu installation
