@@ -22,17 +22,33 @@ parameter at present.
 }
 ```
 
-### Example Usage
+### Examples
 ``` ruby
 require 'hinoki'
 h = Hinoki.new
 
-h.clients.all
-h.clients.by_name('my_client')
-h.clients.delete('my_client')
+h.checks.all
+h.checks.by_name('check_flux_capacitor')
+h.checks.request('check_flux_capacitor', ['my_client'])
 
 h.events.all
-h.checks.all
+h.events.for_client('my_client')
+h.events.resolve('my_client', 'check_flux_capacitor')
+
+h.clients.all
+h.clients.by_name('my_client')
+h.clients.history('my_client')
+h.clients.delete('my_client')
+
+h.stashes.all
+h.stashes.create('/test', {reason: 'because reasons'}}
+h.stashes.by_name('/test')
+h.stashes.delete('/test')
+
+h.aggregates.all
+h.aggregates.by_name('my_aggregate')
+h.aggregates.summarize('my_aggregate')
+h.aggregates.delete('my_aggregate')
 ```
 
 ## Author and License
