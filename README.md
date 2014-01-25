@@ -10,7 +10,7 @@ by a DSL-like logical description of the desired task. Where appropriate, the
 same terminology is used across endpoints.
 
 ### Configuration
-Hinoki looks for a config file in `~/.hinoki/config`. If it does not find this
+Hinoki looks for a config file in `~/.hinoki`. If it does not find this
 configuration file, it will assume it should contact `localhost:4567` for all
 requests. The config file is JSON format and accepts only a `host` and `port`
 parameter at present.
