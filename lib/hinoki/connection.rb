@@ -26,6 +26,10 @@ class Hinoki
     def delete(path)
       return interpret_response(@http.delete(path))
     end
+
+    def request(req)
+      return interpret_response(@http.request(req))
+    end
    
     private
 
