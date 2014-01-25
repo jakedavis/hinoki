@@ -34,13 +34,11 @@ class Hinoki
       case response.code.to_i
       when 200
         puts 'OK'
-      when 201
-        puts 'Success'
-      when 204
-        puts 'Success; no content'
+      when 201,202,204
+        puts 'OK'
         return
       when 400
-        puts 'Invalid request'
+        puts 'Bad request'
         return
       when 404
         puts 'Resource not found'
@@ -49,7 +47,7 @@ class Hinoki
         puts 'Sensu encountered an error'
         return
       else
-        puts 'Unknown HTTP response code ...'
+        puts "Unexpected HTTP response code #{response.code}"
         return
       end
 
