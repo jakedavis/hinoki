@@ -20,9 +20,12 @@ class Hinoki
     # Add a new stash (JSON formatted)
     def self.create(path, content, expiration=nil)
       hash = {path: path, content: content}
-      if expiration then hash.merge!({expire: expiration}) end
+      if expiration then hash.merge!({expire: expiration.to_i}) end
 
-      return @conn.post('/stashes', JSON.generate(hash))
+      post = Net::HTTP::Post.new('/stashes')
+      post.body=JSON.generate(hash)
+
+      return @conn.request(post)
     end 
 
     # Get information about a specific stash
