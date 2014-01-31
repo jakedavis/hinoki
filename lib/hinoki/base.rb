@@ -10,8 +10,8 @@ require 'hinoki/stashes'
 class Hinoki
   attr_accessor(:aggregates, :clients, :checks, :events, :stashes)
   
-  def initialize
-    @conn       = Hinoki::Connection.new
+  def initialize(host=nil, port=nil)
+    @@conn      = Hinoki::Connection.new(host, port)
     @aggregates = Hinoki::Aggregates
     @checks     = Hinoki::Checks
     @clients    = Hinoki::Clients
@@ -19,14 +19,18 @@ class Hinoki
     @stashes    = Hinoki::Stashes
   end
 
+  # Helper for modules to grab onto the connection
+  def self.conn
+    @@conn
+  end
+
   # Delivers information about Sensu and RabbitMQ performance
   def health(consumers=1, messages=1)
-    return @conn.get("/health?consumers=#{consumers}&messages=#{messages}")
+    return self.conn.get("/health?consumers=#{consumers}&messages=#{messages}")
   end
 
   # Metadata about the Sensu installation
   def info
-    return @conn.get('/info')
+    return self.conn.get('/info')
   end
-
 end

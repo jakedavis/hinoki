@@ -5,15 +5,13 @@ require 'hinoki/connection'
 class Hinoki
   module Aggregates
 
-    @conn = Hinoki::Connection.new
-
     # Return a list of all aggregates
     def self.all(limit=nil, offset=nil)
       url = "/aggregates"
       if limit  then url.append("?limit=#{limit}") end
       if offset then url.append("&offset=#{offset}") end
 
-      return @conn.get(url)
+      return Hinoki.conn.get(url)
     end
 
     # Return a specific aggregate check
@@ -21,12 +19,12 @@ class Hinoki
       url = "/aggregates/#{name}"
       if age then url.append("?age=#{age}") end
 
-      return @conn.get(url)
+      return Hinoki.conn.get(url)
     end
 
     # Delete an aggregate check
     def self.delete(name)
-      return @conn.delete("/aggregates/#{name}")
+      return Hinoki.conn.delete("/aggregates/#{name}")
     end
 
     # Returns the list of aggregates
@@ -40,7 +38,7 @@ class Hinoki
         url.append("?results=#{results}") 
       end
 
-      return @conn.get(url)
+      return Hinoki.conn.get(url)
     end
 
   end
