@@ -7,9 +7,9 @@ require 'hinoki/config'
 class Hinoki
   class Connection
 
-    def initialize
+    def initialize(host=nil, port=nil)
       @config = Hinoki::Config.new
-      @http = Net::HTTP.new(@config.host, @config.port)
+      @http = Net::HTTP.new(host || @config.host, port || @config.port)
     end
 
     # Wrapper around Net::HTTP.get
