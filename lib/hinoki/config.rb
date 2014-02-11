@@ -15,7 +15,7 @@ class Hinoki
     private
 
     # Reads the base config file and parses it to a hash
-    def parse_config_file(path=File.join(ENV['HOME'], '.hinoki'))
+    def parse_config_file(path=File.join(ENV['HOME'], '/etc', '.hinoki'))
       if !File.exists?(path)
         puts 'I was unable to find your Hinoki config file!'
         return defaults 
