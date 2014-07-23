@@ -10,8 +10,8 @@ require 'hinoki/stashes'
 class Hinoki
   attr_accessor(:aggregates, :clients, :checks, :events, :stashes)
   
-  def initialize(host=nil, port=nil)
-    @@conn      = Hinoki::Connection.new(host, port)
+  def initialize(host=nil, port=nil, user=nil, pass=nil)
+    @@conn      = Hinoki::Connection.new(host, port, user, pass)
     @aggregates = Hinoki::Aggregates
     @checks     = Hinoki::Checks
     @clients    = Hinoki::Clients

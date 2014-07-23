@@ -4,12 +4,14 @@ require 'json'
 
 class Hinoki
   class Config
-    attr_accessor(:host, :port)
+    attr_accessor(:host, :port, :user, :pass)
 
     def initialize
       @config = parse_config_file
       @host = @config['host']
       @port = @config['port']
+      @user = @config['user']
+      @pass = @config['password']
     end
 
     private

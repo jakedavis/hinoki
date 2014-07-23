@@ -7,27 +7,30 @@ require 'hinoki/config'
 class Hinoki
   class Connection
 
-    def initialize(host=nil, port=nil)
+    def initialize(host=nil, port=nil, user=nil, pass=nil)
       @config = Hinoki::Config.new
+      @config.user = user if user
+      @config.pass = pass if pass
       @http = Net::HTTP.new(host || @config.host, port || @config.port)
     end
 
     # Wrapper around Net::HTTP.get
     def get(path)
-      return interpret_response(@http.get(path))
+      request(Net::HTTP::Get.new(path))
     end
 
     # Wrapper around Net::HTTP.post
     def post(path)
-      return interpret_response(@http.post(path))
+      request(Net::HTTP::Post.new(path))
     end
     
     # Wrapper around Net::HTTP.delete
     def delete(path)
-      return interpret_response(@http.delete(path))
+      request(Net::HTTP::Delete.new(path))
     end
 
     def request(req)
+      req.basic_auth(@config.user,@config.pass) if @config.user && @config.pass
       return interpret_response(@http.request(req))
     end
    
