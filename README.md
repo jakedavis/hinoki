@@ -12,8 +12,12 @@ same terminology is used across endpoints.
 ### Configuration
 Hinoki looks for a config file in `~/.hinoki`. If it does not find this
 configuration file, it will assume it should contact `localhost:4567` for all
-requests. The config file is JSON format and accepts only a `host` and `port`
-`user` and `password` parameter at present.
+requests. The config file is JSON format and accepts the following parameters:
+
+* `host` - Host of the Sensu API
+* `port` - Port of the Sensu API
+* `user` - HTTP basic auth username
+* `password` - HTTP basic auth password
 
 ``` json
 {
