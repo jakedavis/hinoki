@@ -23,17 +23,19 @@ class Hinoki
     def post(path)
       request(Net::HTTP::Post.new(path))
     end
-    
+
     # Wrapper around Net::HTTP.delete
     def delete(path)
       request(Net::HTTP::Delete.new(path))
     end
 
     def request(req)
-      req.basic_auth(@config.user,@config.pass) if @config.user && @config.pass
+      if @config.user && @config.pass
+        req.basic_auth(@config.user, @config.pass)
+      end
       return interpret_response(@http.request(req))
     end
-   
+
     private
 
     # Helper to basically handle any repsonse we could get.
