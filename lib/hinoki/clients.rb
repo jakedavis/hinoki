@@ -8,8 +8,8 @@ class Hinoki
     # Retrieves list of all clients
     def self.all(limit=nil, offset=nil)
       url = "/clients"
-      if limit  then url.append("?limit=#{limit}") end
-      if offset then url.append("&offset=#{offset}") end
+      if limit  then url.concat("?limit=#{limit}") end
+      if offset then url.concat("&offset=#{offset}") end
 
       return Hinoki.conn.get(url)
     end
